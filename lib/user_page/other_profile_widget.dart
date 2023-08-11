@@ -7,7 +7,13 @@ class OtherProfileWidget extends StatelessWidget {
   final String bio;
   final String email;
   final String imageUrl;
-  const OtherProfileWidget({super.key, required this.name, required this.bio, required this.type, required this.imageUrl, required this.email});
+  const OtherProfileWidget(
+      {super.key,
+      required this.name,
+      required this.bio,
+      required this.type,
+      required this.imageUrl,
+      required this.email});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +25,7 @@ class OtherProfileWidget extends StatelessWidget {
             Container(
               color: ColorUse.mainBg,
               width: size.width,
-              height: size.height * 0.2,
+              height: size.height * 0.22,
             ),
             Container(
               color: ColorUse.colorText,
@@ -42,51 +48,69 @@ class OtherProfileWidget extends StatelessWidget {
                   backgroundImage: NetworkImage(imageUrl),
                   radius: size.height * 0.08,
                 ),
-                Text(email, style: TextStyle(
-                  fontSize: size.height * 0.02,
-                  fontWeight: FontWeight.w500
-                ),),
+                Text(
+                  email,
+                  style: TextStyle(
+                      fontSize: size.height * 0.02,
+                      fontWeight: FontWeight.w500),
+                ),
                 Container(
                   padding: EdgeInsets.symmetric(
-                    vertical: size.height * 0.02,
-                    horizontal: size.width * 0.02
-                  ),
+                      vertical: size.height * 0.02,
+                      horizontal: size.width * 0.02),
                   width: size.width,
                   height: size.height * 0.22,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     // mainAxisAlignment: MainAxisAlignment.s,
                     children: [
-                       Container(
-                        width: size.width * 0.8,
-                        height: size.height * 0.06,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(name, style: TextStyle(fontSize: size.height * 0.02, fontWeight: FontWeight.w500),),
-                           const Icon(Icons.person_2_outlined),
-                          ],
-                        )),
                       Container(
-                        width: size.width * 0.8,
-                        height: size.height * 0.06,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(bio, style: TextStyle(fontSize: size.height * 0.02, fontWeight: FontWeight.w500),),
+                          width: size.width * 0.8,
+                          height: size.height * 0.06,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                name,
+                                style: TextStyle(
+                                    fontSize: size.height * 0.02,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                              const Icon(Icons.person_2_outlined),
+                            ],
+                          )),
+                      Container(
+                          width: size.width * 0.8,
+                          height: size.height * 0.06,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                bio,
+                                style: TextStyle(
+                                    fontSize: size.height * 0.02,
+                                    fontWeight: FontWeight.w500),
+                              ),
                               const Icon(Icons.menu),
-                          ],
-                        )),
+                            ],
+                          )),
                       Container(
-                        width: size.width * 0.8,
-                        height: size.height * 0.06,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(type, style: TextStyle(fontSize: size.height * 0.02, fontWeight: FontWeight.w500, fontStyle: FontStyle.italic, color: Colors.grey),),
+                          width: size.width * 0.8,
+                          height: size.height * 0.06,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                type,
+                                style: TextStyle(
+                                    fontSize: size.height * 0.02,
+                                    fontWeight: FontWeight.w500,
+                                    fontStyle: FontStyle.italic,
+                                    color: Colors.grey),
+                              ),
                               const Icon(Icons.merge_type),
-                          ],
-                        ))
+                            ],
+                          ))
                     ],
                   ),
                 ),
