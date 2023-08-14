@@ -143,6 +143,9 @@ class _UserMainPageState extends ConsumerState<UserMainPage> {
                         ),
                       ),
                       userModel.when(data: (data) {
+                        _present!.mycomeName = data.userName;
+                        print(_present!.myName);
+                        // ref.read(stateMyName.notifier).state = data.userName;
                         return UserCard(
                           heights: size.height * 0.2,
                           widths: size.width * 0.8,

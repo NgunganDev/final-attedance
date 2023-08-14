@@ -22,10 +22,12 @@ class _OtherUserPageState extends ConsumerState<OtherUserPage> {
   }
   @override
   Widget build(BuildContext context) {
+    final watchToOther = ref.watch(stateToOther);
     final theUserRoute = ref.watch(stateUserRoute);
+    final watchWhom = ref.watch(stateWhomEmail);
     final size = MediaQuery.sizeOf(context);
     return Scaffold(
-      body: _present!.theOther(0, theUserRoute),
+      body: _present!.theOther(watchToOther, theUserRoute, watchWhom),
     );
   }
 }

@@ -46,7 +46,7 @@ class _ChartWeekState extends ConsumerState<ChartWeek> {
   List<BarChartGroupData> get myGroup => dayName.asMap().entries.map((ev) {
         _present!.setList(widget.listData);
         List<List<ModelAttedance>> fuu = _present!.refactorData;
-        print('${fuu.length} item');
+        // print('${fuu.length} item');
         return BarChartGroupData(x: ev.key, barRods: [
           BarChartRodData(
               width: 10,

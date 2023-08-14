@@ -11,6 +11,7 @@ import 'package:image_picker/image_picker.dart';
 import '../format_parse/format.dart';
 import '../model_data/model_retrieve.dart';
 import '../model_data/model_retrieve_attedance.dart';
+import '../model_data/model_retrive_chat.dart';
 import '../model_db/hive_model.dart';
 
 // perlu maintenance
@@ -152,6 +153,29 @@ class MethodFirebase extends Format {
         .doc(userRouted)
         .snapshots()
         .map((event) => ModelFire.fromSnapshot(event));
+    yield* data;
+  }
+
+  Stream<QuerySnapshot> inContact() async* {
+    final data = instansiRef
+        .doc(await fetchIns())
+        .collection('users')
+        .doc(userr)
+        .collection('allcontact')
+        .snapshots();
+    yield* data;
+  }
+
+  Stream<List<ModelChat>> loadChat() async* {
+    final data = instansiRef
+        .doc(await fetchIns())
+        .collection('users')
+        .doc(userr)
+        .collection('allcontact')
+        .doc(userRouted)
+        .collection('message').orderBy('timestamp', descending: false)
+        .snapshots().map((event) => event.docs.map((e) => ModelChat.fromSnapshot(e)).toList());
+
         yield* data;
   }
 
@@ -354,6 +378,56 @@ class MethodFirebase extends Format {
       "username": username,
     }).then((value) {
       print('success update username');
+    });
+  }
+
+  Future<void> initTheChat(
+      String whomTo, String whomName, String myname) async {
+    await instansiRef
+        .doc(await fetchIns())
+        .collection('users')
+        .doc(userr)
+        .collection('allcontact')
+        .doc(whomTo)
+        .set({"addAt": DateTime.now(), "uuid": uuid, "username": whomName});
+
+    await instansiRef
+        .doc(await fetchIns())
+        .collection('users')
+        .doc(whomTo)
+        .collection('allcontact')
+        .doc(userr)
+        .set({"addAt": DateTime.now(), "uuid": uuid, "username": myname});
+  }
+
+  Future<void> addChat(
+      String messageC, String whomTo, String whomName, String myName) async {
+    await instansiRef
+        .doc(await fetchIns())
+        .collection('users')
+        .doc(userr)
+        .collection('allcontact')
+        .doc(whomTo)
+        .collection('message')
+        .add({
+      "message": messageC,
+      "me": myName,
+      "timestamp": DateTime.now(),
+      "stared": false
+    });
+
+    await instansiRef
+        .doc(await fetchIns())
+        .collection('users')
+        .doc(whomTo)
+        .collection('allcontact')
+        .doc(userr)
+        .collection('message')
+        .add({
+      "message": messageC,
+      "me": myName,
+      "timestamp": Timestamp.now(),
+      "stared": false
     });
   }
 }

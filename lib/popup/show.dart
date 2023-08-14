@@ -73,4 +73,29 @@ class ShowPop extends Format{
           );
         });
   }
+
+  void showBannerImage(BuildContext ctx, url){
+    final size = MediaQuery.sizeOf(ctx);
+    showDialog(context: ctx, builder: (ctx){
+      return Dialog(
+        surfaceTintColor: const Color.fromARGB(0, 255, 255, 255),
+        // alignment: Alignment(0, 0),
+        backgroundColor: Color.fromARGB(0, 0, 0, 0),
+        child: Container(
+          width: size.width,
+          height: size.height,
+          decoration: BoxDecoration(
+            color: const Color.fromARGB(0, 0, 0, 0),
+          ),
+          child: Center(
+            child: CircleAvatar(
+              radius: 80,
+              backgroundImage: NetworkImage(url),
+              backgroundColor: ColorUse.colorAf,
+            ),
+          ),
+        ),
+      );
+    });
+  }
 }

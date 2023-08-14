@@ -267,14 +267,15 @@ class _AdminMainPageState extends ConsumerState<AdminMainPage> {
                                 ..sort((a, b) => a.realtime
                                     .toDate()
                                     .compareTo(b.realtime.toDate()));
-                              // print(data.length);
+                              // print();
                               final timeNow = Timestamp.now();
                               final startWeek = timeNow.toDate().subtract(
-                                  Duration(days: timeNow.toDate().weekday - 1));
+                                  Duration(days: timeNow.toDate().weekday));
                               final endWeek = timeNow.toDate().add(
                                   Duration(days: 7 - timeNow.toDate().weekday));
                               _privList = data.where((elem) {
-                                // print(elem.realtime.toDate());
+                                print(startWeek);
+                                print(endWeek.millisecondsSinceEpoch);
                                 return elem.realtime
                                         .toDate()
                                         .isAfter(startWeek) &&

@@ -6,6 +6,10 @@ import '../model_data/model_retrieve.dart';
 import '../model_data/model_retrieve_attedance.dart';
 
 StateProvider stateauth = StateProvider<int>((ref) => 0);
+StateProvider stateMyName = StateProvider<String>((ref) => '');
+StateProvider stateOtherName = StateProvider<String>((ref) => '');
+StateProvider stateWhomEmail = StateProvider<String>((ref) => '');
+StateProvider stateToOther = StateProvider<int>((ref) => 0);
 StateProvider stateTime = StateProvider<DateTime>((ref) => DateTime.now());
 StateProvider stateBarChart = StateProvider<String>((ref) => 'kehadiran');
 StateProvider stateUserRoute = StateProvider<String>((ref) => '');
@@ -46,4 +50,9 @@ final streamAllUser = StreamProvider.autoDispose<List<ModelFire>>((ref) {
 final streamRoutedUser = StreamProvider.autoDispose<ModelFire>((ref) {
   final present = ref.watch(stateinst);
   return present.routedUser();
+});
+
+final streamPersChat = StreamProvider((ref) {
+  final present = ref.watch(stateinst);
+  return present.loadChat();
 });
